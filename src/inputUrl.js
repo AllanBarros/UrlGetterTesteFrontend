@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 import MaterialTable from 'material-table';
 import Skeleton from '@material-ui/lab/Skeleton';
 
-const InputUrl = (props) => {
+const InputUrl = () => {
   const [Url, setUrl] = useState(null);
   const [relacionadas, setRelacionadas] = useState(null);
   const [skeleton, setSkeleton] = useState(false);
@@ -55,9 +55,9 @@ const InputUrl = (props) => {
   const InputRender = () => {
     return (
       <div>
-        <TextField name='inputUrl' id='inputUrl' variant='outlined' label='Url' style={{ width: '100%' }} onChange={handleChange} defaultValue='' />
+        <TextField name='inputUrl' id='inputUrl' variant='outlined' label='Url' style={{ width: '100%' }} required onChange={handleChange} defaultValue='' />
 
-        <Button className='button' type='button' onClick={handlePost} variant='contained' color='primary'>Get!</Button>
+        <Button className='button' type='button' onClick={handlePost} variant='contained' color='primary' disabled={!Url}>Get!</Button>
         {relacionadas !== null && relacionadas.length > 0 ?
           <div className='table'>
             <MaterialTable
