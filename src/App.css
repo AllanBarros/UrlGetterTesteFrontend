@@ -47,3 +47,8 @@
   margin-top: 2%;
   max-width: 100%;
 }
+
+.skeleton {
+  margin-top:10px;
+  min-height: 300px;
+}

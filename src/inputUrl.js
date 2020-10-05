@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import MaterialTable from 'material-table'
+import MaterialTable from 'material-table';
+import Skeleton from '@material-ui/lab/Skeleton';
 
 const InputUrl = (props) => {
   const [Url, setUrl] = useState(null);
   const [relacionadas, setRelacionadas] = useState(null);
+  const [skeleton, setSkeleton] = useState(false);
 
   // Pegar valor do input e colocar no state para posteriormente ser enviado ao backend
   const handleChange = (event) => {
@@ -15,6 +17,10 @@ const InputUrl = (props) => {
 
   //Realizar o POST da informação para o backend
   const handlePost = () => {
+    //loading durante post 
+    setRelacionadas(null)
+    setSkeleton(true);
+
     //Parte de validação, csrfToken removida para primeira versão
     let endpoint = 'http://localhost:8000/crawler/'
     let data = Url;
@@ -40,6 +46,11 @@ const InputUrl = (props) => {
       })
   }
 
+  useEffect (() => {
+    if (relacionadas !== null){
+      setSkeleton(false)
+    }
+  }, [relacionadas])
 
   const InputRender = () => {
     return (
@@ -58,7 +69,13 @@ const InputUrl = (props) => {
             />
           </div>
           :
-          <div></div>
+          <div>
+            {skeleton == false  ? 
+             <div></div> 
+              :
+             <Skeleton variant="rect" className='skeleton'/>
+            } 
+          </div>
         }
 
 
