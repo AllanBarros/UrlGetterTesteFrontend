@@ -22,7 +22,7 @@ const InputUrl = () => {
     setSkeleton(true);
 
     //Parte de validação, csrfToken removida para primeira versão
-    let endpoint = 'http://localhost:8000/crawler/'
+    let endpoint = 'https://url-getter-backend.mybluemix.net/crawler/'
     let data = Url;
     let lookupOptions = {
       method: 'POST',
